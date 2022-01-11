@@ -1,5 +1,7 @@
 # First-project
-News engine search. Sending customized articles details to e-mail.
+News engine search.
+
+Sending customized articles details to e-mail.
 You can get articles based on the keywords that interest you. The engine will search the entire bank of articles for only those whose titles are relevant to the keywords. You can search by a full match or a partial match and even search for a specipic date.
 
 
