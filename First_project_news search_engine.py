@@ -192,7 +192,7 @@ print(msg)
 port = 465  # For SSL
 smtp_server = "smtp.gmail.com"
 sender_email = "my.general.mail4040@gmail.com"  # Enter your address
-receiver_email = 'tzvi.shir@gmail.com'  # Enter receiver address
+receiver_email = 'alonb4040@gmail.com'  # Enter receiver address
 password = 'Naya4040'
 subject = 'NEWS FOR YOU'
 body = msg
