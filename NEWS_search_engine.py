@@ -25,10 +25,10 @@ import smtplib, ssl
 from datetime import date
 
 #my API_key
-# A local file that contains my key for this API
+#local file that contains my key for this API
 with open('News_API_key.txt') as f:
     my_api_key = f.read()
-
+#for running the script you need to inert your key - you can get it from https://newsapi.org/
 my_api_key = my_api_key.split()[2][1:-1]
 
 # getting the most update data (articles on the main page only)

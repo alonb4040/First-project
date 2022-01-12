@@ -64,17 +64,19 @@ entry_date_of_publication = tk.Entry(fg="black", width=30,borderwidth=4)
 entry_date_of_publication.pack()
 
 #my API_key
-api_key = '68c1a896eb0143e181b3a7543efcc60b'
+#local file that contains my key for this API
+with open('News_API_key.txt') as f:
+    my_api_key = f.read()
+#for running the script you need to inert your key - you can get it from https://newsapi.org/
+my_api_key = my_api_key.split()[2][1:-1]
 
-# getting the most update data (articles on the front page only)
+# getting the most update data (articles on the main page only)
 def news():
-    url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=68c1a896eb0143e181b3a7543efcc60b'
+    url = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={my_api_key}'
     news = requests.get(url).json()
     return news
-
 articles = news()
 articles = articles['articles']
-
 
 # writing\overwriting a file with the most update data (articles on the front page only)
 with open('raw_data_if_new', 'w', encoding = "utf-8") as f:
@@ -214,12 +216,18 @@ def api_main_function():
 
     print(msg)
 
-    # sending the result by email
+    ##sending the result by email
+    # file with email sensitive details
+    with open('Email\'s details.txt') as f:
+        email_variables = f.read()
+    # converting str to dict type
+    email_variables = ast.literal_eval(email_variables)
+
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
-    sender_email = "project.naya4040@gmail.com"  # Enter your address
-    receiver_email = entry_email.get()  # Enter receiver address
-    password = 'Naya4040'
+    sender_email = email_variables['sender_email'] #you need to type a sender_email
+    receiver_email = email_variables['receiver_email'] #you need to type a receiver_email
+    password = email_variables['password'] # you need to type the sender-email's password
     subject = 'NEWS FOR YOU'
     body = msg
     message = f'subject: {subject}\n\n{body}'
