@@ -76,7 +76,7 @@ articles = news()
 articles = articles['articles']
 
 
-# writing\overlapping a file with the most update data (articles on the front page only)
+# writing\overwriting a file with the most update data (articles on the front page only)
 with open('raw_data_if_new', 'w', encoding = "utf-8") as f:
     f.write(str(articles)[1:-1])
 
