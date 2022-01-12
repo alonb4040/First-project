@@ -25,11 +25,15 @@ import smtplib, ssl
 from datetime import date
 
 #my API_key
-api_key = '68c1a896eb0143e181b3a7543efcc60b'
+# A local file that contains my key for this API
+with open('News_API_key.txt') as f:
+    my_api_key = f.read()
+
+my_api_key = my_api_key.split()[2][1:-1]
 
 # getting the most update data (articles on the main page only)
 def news():
-    url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=68c1a896eb0143e181b3a7543efcc60b'
+    url = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={my_api_key}'
     news = requests.get(url).json()
     return news
 articles = news()
@@ -85,7 +89,7 @@ if date_of_publication == '1':
     date_of_publication = str(date.today())
 
 
-# initiate variables
+## initiate variables
 # use during the main function to check and return all the keywords which is unfounded.
 all_words_in_titles = str([bank_of_articles[article]['title'] for article in range(0, len(bank_of_articles))]).lower().title().replace(",","").replace("'", "").replace('"', "").replace('[', "").replace(']', "")
 # presents the keywords as a list while each keyword begins with a big letter.
@@ -134,7 +138,6 @@ def articles_full_match(bank_of_articles, keywords):
                 articles_by_full_match += article_by_keyword
 
     return articles_by_full_match
-
 
 def common_articles(list1, list2):
     common_articles = []
@@ -192,13 +195,19 @@ def api_news_articles(articles, keywords, match):
 msg = api_news_articles(articles, keywords,match)
 print(msg)
 
-'''
-#sending the result by email
+##sending the result by email
+
+#file with email sensitive details
+with open('Email\'s details.txt') as f:
+    email_variables = f.read()
+#converting str to dict type
+email_variables = ast.literal_eval(email_variables)
+
 port = 465  # For SSL
 smtp_server = "smtp.gmail.com"
-sender_email = "project.naya4040@gmail.com"  # Enter your address
-receiver_email = 'alonb4040@gmail.com'  # Enter receiver address
-password = 'Naya4040'
+sender_email = email_variables['sender_email']
+receiver_email = email_variables['receiver_email']
+password = email_variables['password']
 subject = 'NEWS FOR YOU'
 body = msg
 message = f'subject: {subject}\n\n{body}'
@@ -208,7 +217,6 @@ with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
     server.login(sender_email, password)
     server.sendmail(sender_email, receiver_email, message)
 
-'''
 
 
 
