@@ -12,7 +12,7 @@ Partial match - searching for articles and sending all the articles that their t
 For example: for the keyword 'cov' the engine returns articles which in their title there׳s the sequence 'cov' such as: 'covid', 'covid-19' 
 but for the keyword 'alon' the engine can return articles with the word 'alone' in their title. For these scenarios there’s the full match option, so the engine will return articles with the exact sequence only.
 
-There are two text files:
+There are two Json files:
 
 1."raw_data" - which contains all the history of the articles.
 
