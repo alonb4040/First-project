@@ -1,5 +1,5 @@
-# First-project
 News search engine
+
 
 Sending customized articles’ details to your Email address.
 You can get articles based on keywords for your interest. The engine will search the entire articles’ bank, by titles, based on what’s relevant to your keywords. You can filter the web searches results, by a full match or a partial match and even by a specific date.
