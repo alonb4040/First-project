@@ -26,7 +26,7 @@ import smtplib
 import ssl
 from datetime import date
 
-#GUI: creating all the widget
+#GUI: creating all the widgets
 window = tk.Tk()
 window.geometry("350x450")
 
@@ -77,10 +77,10 @@ articles = articles['articles']
 
 
 # writing\overlapping a file with the most update data (articles on the front page only)
-with open('raw_data_if_new', 'w') as f:
+with open('raw_data_if_new', 'w', encoding = "utf-8") as f:
     f.write(str(articles)[1:-1])
 
-with open('raw_data_if_new') as f:
+with open('raw_data_if_new', encoding = "utf-8") as f:
     origin_info_if_new = f.read()
 
 # getting all history of articles from an exiting file and save it as a list
@@ -99,8 +99,8 @@ def add_articles(bank_of_articles, new_articles):
         return bank_of_articles  # which means that the articles on the main page are in the bank.
     else:
         # adding the new articles to the bank
-        with open('raw_data', 'a') as f:
-            f.write(', ' + str(articles)[1:-1])
+        #with open('raw_data', 'a', encoding = "utf-8") as f:
+            #f.write(', ' + str(articles)[1:-1])
 
         return bank_of_articles + bank_of_articles_if_new
 
@@ -205,7 +205,7 @@ def api_main_function():
             for article in final_bank_of_articles:
 
                 if keyword in article['title'].lower().title():
-                    msg +=f"\n{index}. Title: {article['title']}:\n{article['url']}\n{article['publishedAt'][:10]} {article['publishedAt'][11:-1]}\n{100 * '-'}"
+                    msg +=f"\n{index}. Title: {article['title']}:\n{article['url']}\n\n{article['publishedAt'][:10]} {article['publishedAt'][11:-1]}\n{100 * '-'}"
                     index += 1
     if list_of_missing_words == list(keywords):
         msg += '\n\nSorry we couldn\'t find any articles for your keywords, you\'re welcome to try another keyword'
