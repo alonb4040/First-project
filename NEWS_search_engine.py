@@ -39,11 +39,11 @@ articles = articles['articles']
 with open('raw_data', 'w') as f:
     f.write(str(articles)[1:-1])
 '''
-# writing\overlapping a file with the most update data (articles on the main page only)
-with open('raw_data_if_new', 'w', encoding = "utf-8") as f:
+# writing\overwriting a file with the most update data (articles on the main page only)
+with open('raw_data_if_new', 'w') as f:
     f.write(str(articles)[1:-1])
 
-with open('raw_data_if_new',encoding = "utf-8") as f:
+with open('raw_data_if_new') as f:
     origin_info_if_new = f.read()
 
 # getting all history of articles from an exiting file and save it as a list
@@ -63,8 +63,8 @@ def add_articles(bank_of_articles, new_articles):
         return bank_of_articles  # which means that the articles on the main page are in the bank.
     else:
         # adding the new articles to the bank
-      #  with open('raw_data', 'a') as f:
-      #      f.write(', ' + str(articles)[1:-1])
+        with open('raw_data', 'a') as f:
+            f.write(', ' + str(articles)[1:-1])
 
         return bank_of_articles + bank_of_articles_if_new
 
@@ -80,7 +80,7 @@ name = input("\nWhat is your name?").title()
 match = input('Insert 1 for a partial match and 2 a for full match')
 while match not in ['1', '2']:
     match = input('Amit don\'t play with me, insert 1 or 2 :)')
-date_of_publication = input('Optional: Insert a date of publication in the following format "year-month-day", press one for today results only. (The default is anytime)')
+date_of_publication = input('Optional: Insert a date of publication in the following format "year-month-day", press 1 for today results only. (The default is anytime)')
 if date_of_publication == '1':
     date_of_publication = str(date.today())
 
@@ -192,7 +192,7 @@ def api_news_articles(articles, keywords, match):
 msg = api_news_articles(articles, keywords,match)
 print(msg)
 
-
+'''
 #sending the result by email
 port = 465  # For SSL
 smtp_server = "smtp.gmail.com"
@@ -208,7 +208,7 @@ with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
     server.login(sender_email, password)
     server.sendmail(sender_email, receiver_email, message)
 
-
+'''
 
 
 
