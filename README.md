@@ -14,7 +14,7 @@ but for the keyword 'alon' the engine can return articles with the word 'alone' 
 
 There are two text files:
 
-1."raw_data" - whcich contains all the history of the articles.
+1."raw_data" - which contains all the history of the articles.
 
 2."raw_data_if_new - which after the run contains the most updated articles (Those on the main page only). During the script, we check if those articles are in "raw_data", if not, it adds them to it.
 
